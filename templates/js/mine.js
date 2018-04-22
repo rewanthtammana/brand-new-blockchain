@@ -1,4 +1,3 @@
-var mine;
 let result = document.getElementById('result-list');
 
 var Client = (function() {
@@ -16,7 +15,7 @@ var Client = (function() {
             "data": `Block added by node ${id}`,
             "id": id
         };
-        console.log(data);
+        // console.log(data);
         let params = {
             method: "POST",
             headers: {
