@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <title>Basic mining page</title>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <body>
+        <input type="button" value="Start mining" id="start" name="start">
+        <input type="button" value="Pause mining" id="pause" name="pause">
+
+        <div class="modal-body row">
+            <div class="col-md-9">
+                <table id="result-list">
+                    <tr>
+                        <th>Status message</th>
+                        <th>Timestamp</th>
+                        <th>Hash</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <div class="container"></div>
+            </div>
+        </div>
+        
+        <script src="js/mine.js"></script>
+        <script src="js/constants.js"></script>
+        <script>
+            let clients = [];
+            var mine, timer;
+            var isPaused = false;
+            var seconds = TIMEOUT;
+
+            // creates a bunch of clients
+            for(let i=0; i<MAX_MINERS; i++) {
+                clients.push(new Client(i));
+            }
+
+            // starts mining by randomly selecting a Client to mine the block
+            $("#start").click(() => {
+                isPaused = false;
+                mine = setInterval(() => {
+                    if(!isPaused) {
+                        if(seconds == TIMEOUT) {
+                            let id = Math.floor(Math.random() * (MAX_MINERS - 1));
+                            clients[id].start();
+                        }
+
+                        $(".container").text(`Next block gets mined in ${seconds} seconds.`);
+                        seconds = seconds - 1;
+                        
+                        if(seconds <= 0) {
+                            seconds = TIMEOUT;
+                        }
+                    }
+                }, 1000);
+            });
+
+            // pauses mining process until start button is clicked
+            $("#pause").click(() => {
+                isPaused = true;
+                $(".container").text(`Next block gets mined in ${seconds} seconds. Mining paused at this moment!`);
+            });
+        </script>
+    </body>
+</html>
