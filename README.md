@@ -12,6 +12,6 @@ Constants are available at `templates/js/constants.js`. Default constants
 * Timeout = 90 sec
 
  #### Screenshots
- ![http://139.59.80.218:8000/BlockchainCapture.PNG](http://139.59.80.218:8000/BlockchainCapture.PNG) 
+ ![http://159.65.157.46:8000/BlockchainCapture.PNG](http://159.65.157.46:8000/BlockchainCapture.PNG) 
  
-![http://139.59.80.218:8000/BlockchainCapture1.PNG](http://139.59.80.218:8000/BlockchainCapture1.PNG)
+![http://159.65.157.46:8000/BlockchainCapture1.PNG](http://159.65.157.46:8000/BlockchainCapture1.PNG)
